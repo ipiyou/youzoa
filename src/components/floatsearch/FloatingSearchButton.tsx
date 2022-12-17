@@ -4,12 +4,15 @@ import useFloating from "../../hooks/useFloating";
 import { SearchIcon } from "../../assets";
 
 function FloatingSearchButton() {
-  const [location, onMouseDown] = useFloating({ width: 50, height: 50 });
+  const [location, isOpen, onMouseDown] = useFloating({
+    width: 50,
+    height: 50,
+  });
 
   return (
     <_Wrapper {...location}>
-      <_InputKeyWord />
-      <_IconWrapper onMouseDown={onMouseDown} img={SearchIcon}></_IconWrapper>
+      {isOpen && <_InputKeyWord />}
+      <_IconWrapper onMouseDown={onMouseDown} img={SearchIcon} />
     </_Wrapper>
   );
 }
@@ -20,7 +23,7 @@ const _Wrapper = styled.div<{ x: number; y: number }>`
 `;
 
 const _InputKeyWord = styled.input`
-  display: none;
+
 `;
 
 const GainWidth_Keyframes = keyframes`

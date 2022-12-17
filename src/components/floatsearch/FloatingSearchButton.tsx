@@ -19,15 +19,22 @@ function FloatingSearchButton() {
 
 const _Wrapper = styled.div<{ x: number; y: number }>`
   position: absolute;
+  display: flex;
   transform: translate3d(${({ x, y }) => `${x}px,${y}px,0`});
 `;
 
-const _InputKeyWord = styled.input`
-
+const GainWidth_Keyframes = keyframes`
+    0%{
+        width: 0px;
+    }
+    100%{
+        width: 200px;
+    }
 `;
 
-const GainWidth_Keyframes = keyframes`
-    
+const _InputKeyWord = styled.input`
+  width: 200px;
+  animation: ${GainWidth_Keyframes} 1s;
 `;
 
 const _IconWrapper = styled.div<{ img: string }>`

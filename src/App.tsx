@@ -1,11 +1,12 @@
 import React from "react";
+import { Routes } from "react-router";
 import FloatingSearchButton from "./components/floatsearch/FloatingSearchButton";
 
 function App() {
   return (
-    <div>
+    <Routes>
       <FloatingSearchButton />
-    </div>
+    </Routes>
   );
 }
 

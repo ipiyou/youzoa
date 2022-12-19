@@ -11,7 +11,7 @@ interface PropsType {
 }
 
 const useFloating = ({ width, height }: PropsType) => {
-  const [openInput, setOpen] = useState<boolean>(false);
+  const [animation, setAnime] = useState<boolean>(false);
   const [location, setLocate] = useState<LocationType>({
     x: width,
     y: height,
@@ -29,14 +29,14 @@ const useFloating = ({ width, height }: PropsType) => {
 
     const RemoveMouseMove = () => {
       document.removeEventListener("mousemove", MouseMoved);
-      isClick && setOpen(!openInput);
+      isClick && setAnime(!animation);
     };
 
     document.addEventListener("mousemove", MouseMoved);
     document.addEventListener("mouseup", RemoveMouseMove, { once: true });
   };
 
-  return [location, openInput, onMouseDown] as const;
+  return [location, animation, onMouseDown] as const;
 };
 
 export default useFloating;

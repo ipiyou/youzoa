@@ -1,12 +1,20 @@
-import React from "react";
+import { useState } from "react";
 import { Routes } from "react-router";
+import GlobalContext from "./style";
 import FloatingSearchButton from "./components/floatsearch/FloatingSearchButton";
+import Header from "./components/header";
 
 function App() {
+  const [mod, setMod] = useState<boolean>(false);
+
+  const HeaderProps = { mod, setMod };
+
   return (
-    <Routes>
+    <GlobalContext userMode={mod}>
       <FloatingSearchButton />
-    </Routes>
+      <Header {...HeaderProps} />
+      <Routes></Routes>
+    </GlobalContext>
   );
 }
 

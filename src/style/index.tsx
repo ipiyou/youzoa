@@ -1,6 +1,6 @@
 import { Global, ThemeProvider } from "@emotion/react";
+import { darkMod, whiteMod } from "./theme";
 import global from "./global";
-import ThemeSelector from "./theme";
 
 interface ThemeType {
   children: React.ReactNode;
@@ -8,9 +8,8 @@ interface ThemeType {
 }
 
 const GlobalContext = ({ children, userMode }: ThemeType) => {
-  const theme = ThemeSelector(userMode);
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={userMode ? darkMod : whiteMod}>
       <Global styles={global} />
       {children}
     </ThemeProvider>

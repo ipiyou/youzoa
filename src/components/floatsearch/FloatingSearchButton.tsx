@@ -3,25 +3,31 @@ import { keyframes } from "@emotion/react";
 import useFloating from "../../hooks/useFloating";
 import { SearchIcon } from "../../assets";
 
-function FloatingSearchButton() {
+interface PropsType {
+  mod: boolean;
+}
+
+function FloatingSearchButton({ mod }: PropsType) {
   const [location, animation, onMouseDown] = useFloating({
     width: 50,
     height: 50,
   });
 
-  console.log(animation);
+  const IconProps = { onMouseDown };
+
   return (
     <_Wrapper {...location}>
       {<_InputKeyWord animation={animation} />}
-      <_IconWrapper onMouseDown={onMouseDown} img={SearchIcon} />
+      <_SearchIcon {...IconProps} />
     </_Wrapper>
   );
 }
 
 const _Wrapper = styled.div<{ x: number; y: number }>`
   position: absolute;
+  z-index: 100;
   display: flex;
-  background-color: black;
+  background-color: ${({ theme }) => theme.draw.selector};
   border-radius: 100px;
   transform: translate3d(${({ x, y }) => `${x}px,${y}px,0`});
 `;
@@ -34,6 +40,7 @@ const GainWidth_Keyframes = keyframes`
     100%{
         width: 200px;
         padding: 0 20px;
+        border-radius: 50px 0 0 50px;
     }
 `;
 
@@ -52,23 +59,21 @@ const RemoveInput = keyframes`
 const _InputKeyWord = styled.input<{ animation: boolean }>`
   width: 0px;
   outline: 0;
-  color: black;
+  border-radius: 50px 0 0 50px;
   font-size: 16px;
   display: block;
-  border: 1px solid black;
+
+  background-color: #d9d9d9;
   animation: ${({ animation }) =>
       animation ? GainWidth_Keyframes : RemoveInput}
     1s forwards;
   animation-fill-mode: forwards;
 `;
 
-const _IconWrapper = styled.div<{ img: string }>`
-  width: 50px;
-  height: 50px;
-  background-image: url(${({ img }) => img});
-  background-repeat: no-repeat;
-  background-position: center center;
-  border-radius: 25px;
+const _SearchIcon = styled(SearchIcon)`
+  path {
+    fill: ${({ theme }) => theme.draw.background};
+  }
 `;
 
 export default FloatingSearchButton;

@@ -1,4 +1,4 @@
-import react, { useRef, useEffect, useState } from "react";
+import react, { useState } from "react";
 
 interface LocationType {
   x: number;
@@ -17,7 +17,7 @@ const useFloating = ({ width, height }: PropsType) => {
     y: height,
   });
 
-  const onMouseDown = (fix: react.MouseEvent<HTMLDivElement, MouseEvent>) => {
+  const onMouseDown = (fix: react.MouseEvent<SVGElement, MouseEvent>) => {
     let isClick = true;
     const MouseMoved = (flow: MouseEvent) => {
       const x = flow.screenX - fix.screenX + location.x;

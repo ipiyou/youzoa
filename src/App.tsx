@@ -4,14 +4,27 @@ import GlobalContext from "./style";
 import FloatingSearchButton from "./components/floatsearch/FloatingSearchButton";
 import Header from "./components/header";
 
-function App() {
-  const [mod, setMod] = useState<boolean>(false);
+export interface SettingType {
+  mod: boolean;
+  bright: number;
+  list: number;
+  vedio: number;
+}
 
-  const HeaderProps = { mod, setMod };
+function App() {
+  const [user, setting] = useState<SettingType>({
+    mod: false,
+    bright: 0,
+    list: 0,
+    vedio: 0,
+  });
+
+  const SearchProps = { user };
+  const HeaderProps = { user, setting };
 
   return (
-    <GlobalContext userMode={mod}>
-      <FloatingSearchButton />
+    <GlobalContext userMode={user.mod}>
+      <FloatingSearchButton {...SearchProps} />
       <Header {...HeaderProps} />
       <Routes></Routes>
     </GlobalContext>

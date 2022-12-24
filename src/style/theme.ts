@@ -3,7 +3,8 @@ export const darkMod = {
     background: "#121212",
     selector: "#FFFFFF",
     loadcolor: "#D9D9D9",
-    setting: "#F1F1F1",
+
+    setting: "#333333",
   },
   font: {
     titlecolor: "#E7E7E7",
@@ -16,7 +17,7 @@ export const whiteMod = {
     background: "#ffffff",
     selector: "#000000",
     loadcolor: "#444444",
-    setting: "#333333",
+    setting: "#F1F1F1",
   },
   font: {
     titlecolor: "#000000",

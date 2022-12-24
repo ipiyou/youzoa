@@ -2,12 +2,13 @@ import styled from "@emotion/styled";
 import { keyframes } from "@emotion/react";
 import useFloating from "../../hooks/useFloating";
 import { SearchIcon } from "../../assets";
+import { SettingType } from "../../App";
 
 interface PropsType {
-  mod: boolean;
+  user: SettingType;
 }
 
-function FloatingSearchButton({ mod }: PropsType) {
+function FloatingSearchButton({ user }: PropsType) {
   const [location, animation, onMouseDown] = useFloating({
     width: 50,
     height: 50,
@@ -71,6 +72,9 @@ const _InputKeyWord = styled.input<{ animation: boolean }>`
 `;
 
 const _SearchIcon = styled(SearchIcon)`
+width: 50px;
+height: 50px;
+padding: 10px;
   path {
     fill: ${({ theme }) => theme.draw.background};
   }

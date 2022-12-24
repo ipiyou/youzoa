@@ -1,10 +1,14 @@
 import styled from "@emotion/styled";
+import { SettingType } from "../../../App";
+import { Dispatch, SetStateAction } from "react";
 
-interface PropsType {}
+interface PropsType {
+  onClick: () => void;
+}
 
-function DarkMod() {
+function DarkMod({ onClick }: PropsType) {
   return (
-    <_Wrapper>
+    <_Wrapper onClick={onClick}>
       <_ModChangeCircle />
     </_Wrapper>
   );
@@ -22,7 +26,7 @@ const _ModChangeCircle = styled.div`
   height: 100%;
   float: left;
   border-radius: 50px;
-  background-color: ${({theme}) => theme.draw.selector}
+  background-color: ${({ theme }) => theme.draw.selector};
 `;
 
 export default DarkMod;

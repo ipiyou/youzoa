@@ -11,12 +11,12 @@ interface PropsType {
 }
 
 function Header({ user, setting }: PropsType) {
-  const ModChange = () => setting({ ...user, mod: !user.mod });
+  const changeMod = () => setting({ ...user, mod: !user.mod });
   return (
     <_Wrapper>
       <YouZoaIcon />
       <EditorSpace editName="DarkMod">
-        <DarkMod />
+        <DarkMod onClick={changeMod} />
       </EditorSpace>
     </_Wrapper>
   );

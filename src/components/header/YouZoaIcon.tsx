@@ -10,16 +10,17 @@ function Icon() {
 }
 
 const _Wrapper = styled.div`
-  margin-top: 50px;
+  margin: 50px 0 100px 0;
   color: ${({ theme }) => theme.font.titlecolor};
 `;
 
 const _Font = styled.span`
-  font-size: 42px;
-  margin-left: 50px;
+  font-size: 38px;
+  margin-left: 30px;
 `;
 
 const _Icon = styled(YouZoaIcon)`
+  width: 50px;
   position: absolute;
   rotate: -30deg;
   margin: 5px 0 0 5px;

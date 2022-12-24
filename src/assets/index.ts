@@ -1,2 +1,2 @@
-export { default as SearchIcon } from "./searchIcon.svg";
-export { default as YouZoaIcon } from "./titleIcon.svg";
+export { ReactComponent as SearchIcon } from "./searchIcon.svg";
+export { ReactComponent as YouZoaIcon } from "./titleIcon.svg";

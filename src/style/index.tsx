@@ -4,7 +4,7 @@ import global from "./global";
 
 interface ThemeType {
   children: React.ReactNode;
-  userMode: boolean;
+  userMode: boolean | null;
 }
 
 const GlobalContext = ({ children, userMode }: ThemeType) => {

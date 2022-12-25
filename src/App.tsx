@@ -5,18 +5,18 @@ import FloatingSearchButton from "./components/floatsearch/FloatingSearchButton"
 import Header from "./components/header";
 
 export interface SettingType {
-  mod: boolean;
+  mod: boolean | null;
   bright: number;
   list: number;
-  vedio: number;
+  video: number;
 }
 
 function App() {
   const [user, setting] = useState<SettingType>({
-    mod: false,
+    mod: null,
     bright: 0,
     list: 0,
-    vedio: 0,
+    video: 0,
   });
 
   const SearchProps = { user };

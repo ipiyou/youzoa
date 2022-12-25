@@ -11,12 +11,15 @@ interface PropsType {
 }
 
 function Header({ user, setting }: PropsType) {
-  const changeMod = () => setting({ ...user, mod: !user.mod });
+  const { mod, bright, list, video } = user;
+  const ModChange = () => setting({ ...user, mod: !user.mod });
+
+  const DarkModProps = { ModChange, mod };
   return (
     <_Wrapper>
       <YouZoaIcon />
       <EditorSpace editName="DarkMod">
-        <DarkMod onClick={changeMod} />
+        <DarkMod {...DarkModProps} />
       </EditorSpace>
     </_Wrapper>
   );
@@ -26,8 +29,7 @@ const _Wrapper = styled.div`
   position: absolute;
   width: 250px;
   height: 100%;
-  border-right: 1px solid #000000;
-  background-color: ${({ theme }) => theme.draw.background};
+  background-color: ${({ theme }) => theme.draw.headerBack};
 `;
 
 export default Header;

@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { keyframes } from "@emotion/react";
+import { css, keyframes } from "@emotion/react";
 import useFloating from "../../hooks/useFloating";
 import { SearchIcon } from "../../assets";
 import { SettingType } from "../../App";
@@ -57,24 +57,23 @@ const RemoveInput = keyframes`
     }
 `;
 
-const _InputKeyWord = styled.input<{ animation: boolean }>`
+const _InputKeyWord = styled.input<{ animation: boolean | null }>`
   width: 0px;
+  border: 0;
   outline: 0;
   border-radius: 50px 0 0 50px;
   font-size: 16px;
-  display: block;
-
   background-color: #d9d9d9;
   animation: ${({ animation }) =>
-      animation ? GainWidth_Keyframes : RemoveInput}
-    1s forwards;
+    typeof animation !== "object" &&
+    css`1s ${animation ? GainWidth_Keyframes : RemoveInput} forwards`};
   animation-fill-mode: forwards;
 `;
 
 const _SearchIcon = styled(SearchIcon)`
-width: 50px;
-height: 50px;
-padding: 10px;
+  width: 50px;
+  height: 50px;
+  padding: 10px;
   path {
     fill: ${({ theme }) => theme.draw.background};
   }

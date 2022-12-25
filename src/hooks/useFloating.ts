@@ -11,7 +11,7 @@ interface PropsType {
 }
 
 const useFloating = ({ width, height }: PropsType) => {
-  const [animation, setAnime] = useState<boolean>(false);
+  const [animation, setAnime] = useState<boolean | null>(null);
   const [location, setLocate] = useState<LocationType>({
     x: width,
     y: height,

@@ -2,6 +2,7 @@ import styled from "@emotion/styled";
 import { Dispatch, SetStateAction } from "react";
 import { SettingType } from "../../App";
 import YouZoaIcon from "../header/YouZoaIcon";
+import BrightRange from "./editor/BrightRange";
 import DarkMod from "./editor/DarkMod";
 import EditorSpace from "./editor/EditorSpace";
 
@@ -20,6 +21,9 @@ function Header({ user, setting }: PropsType) {
       <YouZoaIcon />
       <EditorSpace editName="DarkMod">
         <DarkMod {...DarkModProps} />
+      </EditorSpace>
+      <EditorSpace editName="Brightness">
+        <BrightRange />
       </EditorSpace>
     </_Wrapper>
   );

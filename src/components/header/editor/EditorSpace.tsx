@@ -14,7 +14,7 @@ function EditorSpace({ editName, children }: PropsType) {
 }
 
 const _Wrapper = styled.div`
-  padding: 0 0 30px 25px;
+  padding: 0 0 30px 40px;
 `;
 
 const _Editor_Name = styled.div`

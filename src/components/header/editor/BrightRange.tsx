@@ -1,7 +1,21 @@
 import styled from "@emotion/styled";
+import { ChangeEvent } from "react";
 
-function BrightRange() {
-  return <_BrightRange type="range" min="0" max="100" />;
+interface PropsType {
+  BrightChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  bright: number;
+}
+
+function BrightRange({ bright, BrightChange }: PropsType) {
+  return (
+    <_BrightRange
+      value={bright}
+      onChange={BrightChange}
+      type="range"
+      min="0"
+      max="100"
+    />
+  );
 }
 
 const _BrightRange = styled.input`

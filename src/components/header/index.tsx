@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, ChangeEvent } from "react";
 import { SettingType } from "../../App";
 import YouZoaIcon from "../header/YouZoaIcon";
 import BrightRange from "./editor/BrightRange";
@@ -13,9 +13,14 @@ interface PropsType {
 
 function Header({ user, setting }: PropsType) {
   const { mod, bright, list, video } = user;
+
   const ModChange = () => setting({ ...user, mod: !user.mod });
+  const BrightChange = (e: ChangeEvent<HTMLInputElement>) =>
+    setting({ ...user, bright: Number(e.target.value) });
 
   const DarkModProps = { ModChange, mod };
+  const Bright = { BrightChange, bright };
+  
   return (
     <_Wrapper>
       <YouZoaIcon />
@@ -23,7 +28,7 @@ function Header({ user, setting }: PropsType) {
         <DarkMod {...DarkModProps} />
       </EditorSpace>
       <EditorSpace editName="Brightness">
-        <BrightRange />
+        <BrightRange {...Bright} />
       </EditorSpace>
     </_Wrapper>
   );

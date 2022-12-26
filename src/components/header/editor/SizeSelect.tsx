@@ -40,6 +40,7 @@ const _Interact = styled.div`
   border-radius: 10px;
   padding: 5px 0;
   background-color: ${({ theme }) => theme.draw.setting};
+  color: ${({ theme }) => theme.font.infocolor};
 `;
 
 const _ModalButton = styled.button`
@@ -48,6 +49,8 @@ const _ModalButton = styled.button`
   font-size: inherit;
   border: 0;
   outline: 0;
+  background-color: inherit;
+  color: inherit;
 `;
 
 const _ListWrapper = styled.ul`
@@ -61,6 +64,7 @@ const _Option = styled.li`
   border-radius: 0;
   font-size: inherit;
   cursor: pointer;
+  color: inherit;
   :hover {
     background-color: ${({ theme }) => theme.draw.loadcolor};
   }

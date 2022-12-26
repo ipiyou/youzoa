@@ -27,7 +27,7 @@ const _BrightRange = styled.input`
   background: transparent;
   ::-webkit-slider-thumb {
     -webkit-appearance: none;
-    background: #000000;
+    background: ${({ theme }) => theme.draw.selector};
     cursor: pointer;
     border-radius: 10px;
     height: 18px;
@@ -37,7 +37,7 @@ const _BrightRange = styled.input`
   ::-webkit-slider-runnable-track {
     width: 100%;
     height: 1px;
-    background: #000000;
+    background: ${({ theme }) => theme.draw.selector};
     border-radius: 1.3px;
     margin: auto;
   }

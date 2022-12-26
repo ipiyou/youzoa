@@ -5,6 +5,7 @@ import YouZoaIcon from "../header/YouZoaIcon";
 import BrightRange from "./editor/BrightRange";
 import DarkMod from "./editor/DarkMod";
 import EditorSpace from "./editor/EditorSpace";
+import SizeSelect from "./editor/SizeSelect";
 
 interface PropsType {
   user: SettingType;
@@ -17,10 +18,13 @@ function Header({ user, setting }: PropsType) {
   const ModChange = () => setting({ ...user, mod: !user.mod });
   const BrightChange = (e: ChangeEvent<HTMLInputElement>) =>
     setting({ ...user, bright: Number(e.target.value) });
+  const ListChange = (text: string) => {
+    setting({ ...user, list: text });
+  };
 
   const DarkModProps = { ModChange, mod };
-  const Bright = { BrightChange, bright };
-  
+  const BrightProps = { BrightChange, bright };
+
   return (
     <_Wrapper>
       <YouZoaIcon />
@@ -28,7 +32,14 @@ function Header({ user, setting }: PropsType) {
         <DarkMod {...DarkModProps} />
       </EditorSpace>
       <EditorSpace editName="Brightness">
-        <BrightRange {...Bright} />
+        <BrightRange {...BrightProps} />
+      </EditorSpace>
+      <EditorSpace editName="List Size">
+        <SizeSelect
+          selected={list}
+          List={["240 X 360", "420 X 720"]}
+          SizeChange={ListChange}
+        />
       </EditorSpace>
     </_Wrapper>
   );

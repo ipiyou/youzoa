@@ -21,9 +21,20 @@ function Header({ user, setting }: PropsType) {
   const ListChange = (text: string) => {
     setting({ ...user, list: text });
   };
+  const VideoChange = (text: string) => {
+    setting({ ...user, video: text });
+  };
+
+  const SizeProps = (
+    selected: string,
+    List: string[],
+    SizeChange: (text: string) => void
+  ) => ({ selected, List, SizeChange });
 
   const DarkModProps = { ModChange, mod };
   const BrightProps = { BrightChange, bright };
+  const ListProps = SizeProps(list, ["240 X 360", "420 X 720"], ListChange);
+  const VideoProps = SizeProps(video, ["240 X 360", "420 X 720"], VideoChange);
 
   return (
     <_Wrapper>
@@ -35,11 +46,10 @@ function Header({ user, setting }: PropsType) {
         <BrightRange {...BrightProps} />
       </EditorSpace>
       <EditorSpace editName="List Size">
-        <SizeSelect
-          selected={list}
-          List={["240 X 360", "420 X 720"]}
-          SizeChange={ListChange}
-        />
+        <SizeSelect {...ListProps} />
+      </EditorSpace>
+      <EditorSpace editName="Video Size">
+        <SizeSelect {...VideoProps} />
       </EditorSpace>
     </_Wrapper>
   );

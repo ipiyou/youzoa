@@ -7,16 +7,16 @@ import Header from "./components/header";
 export interface SettingType {
   mod: boolean | null;
   bright: number;
-  list: number;
-  video: number;
+  list: string;
+  video: string;
 }
 
 function App() {
   const [user, setting] = useState<SettingType>({
     mod: null,
     bright: 0,
-    list: 0,
-    video: 0,
+    list: "240 X 600",
+    video: "240 X 600",
   });
 
   const SearchProps = { user };

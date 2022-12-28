@@ -8,6 +8,11 @@ const global = css`
     box-sizing: border-box;
     font-family: Exo;
   }
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
 `;
 
 export default global;

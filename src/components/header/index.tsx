@@ -27,14 +27,25 @@ function Header({ user, setting }: PropsType) {
 
   const SizeProps = (
     selected: string,
+    zIndex: number,
     List: string[],
     SizeChange: (text: string) => void
-  ) => ({ selected, List, SizeChange });
+  ) => ({ selected, zIndex, List, SizeChange });
 
   const DarkModProps = { ModChange, mod };
   const BrightProps = { BrightChange, bright };
-  const ListProps = SizeProps(list, ["240 X 360", "420 X 720"], ListChange);
-  const VideoProps = SizeProps(video, ["240 X 360", "420 X 720"], VideoChange);
+  const ListProps = SizeProps(
+    list,
+    2,
+    ["240 X 160", "360 X 250", "520 X 400"],
+    ListChange
+  );
+  const VideoProps = SizeProps(
+    video,
+    1,
+    ["240 X 120", "420 X 250"],
+    VideoChange
+  );
 
   return (
     <_Wrapper>
@@ -56,9 +67,9 @@ function Header({ user, setting }: PropsType) {
 }
 
 const _Wrapper = styled.div`
-  position: absolute;
   width: 250px;
   height: 100%;
+  float: left;
   background-color: ${({ theme }) => theme.draw.headerBack};
 `;
 

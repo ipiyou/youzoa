@@ -3,16 +3,17 @@ import { ChangeEvent, useState } from "react";
 
 interface PropsType {
   List: string[];
+  zIndex: number;
   selected: string;
   SizeChange: (text: string) => void;
 }
 
-function SizeSelect({ List, selected, SizeChange }: PropsType) {
+function SizeSelect({ List, zIndex, selected, SizeChange }: PropsType) {
   const [onOff, Switch] = useState<boolean>(false);
   const ModalonOff = () => Switch(!onOff);
   return (
     <_Wrapper>
-      <_Interact>
+      <_Interact index={zIndex}>
         <_ModalButton onClick={ModalonOff}>{selected}</_ModalButton>
         {onOff && (
           <_ListWrapper>
@@ -34,11 +35,13 @@ const _Wrapper = styled.div`
   font-size: 18px;
 `;
 
-const _Interact = styled.div`
+const _Interact = styled.div<{ index: number }>`
   width: inherit;
+  z-index: ${({ index }) => index};
   position: absolute;
   border-radius: 10px;
   padding: 5px 0;
+  box-shadow: 1px 2px 0 rgba(0, 0, 0, 20%);
   background-color: ${({ theme }) => theme.draw.setting};
   color: ${({ theme }) => theme.font.infocolor};
 `;

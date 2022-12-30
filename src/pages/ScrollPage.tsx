@@ -6,15 +6,29 @@ interface PropsType {
   user: SettingType;
 }
 
-function ScrollPage(props: PropsType) {
+function ScrollPage(settingValue: PropsType) {
   return (
     <_Wrapper>
-      <VideoElement {...props} />
+      {Array(10)
+        .fill(0)
+        .map((_) => (
+          <VideoElement {...settingValue} />
+        ))}
     </_Wrapper>
   );
 }
 
 const _Wrapper = styled.div`
+  overflow-y: scroll;
+  ::-webkit-scrollbar {
+    width: 15px;
+  }
+  ::-webkit-scrollbar-track {
+    background-color: ${({ theme }) => theme.draw.scrollTrack};
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: ${({ theme }) => theme.draw.scrollBar};
+  }
   background-color: ${({ theme }) => theme.draw.background};
   height: 100%;
   margin-left: 250px;

@@ -14,7 +14,7 @@ type ImgRatio = RatioWidth & { src: string };
 
 function VideoElement({ user }: PropsType) {
   const { bright, list } = user;
-  const [width, height] = list.split(" X ");
+  const [width,] = list.split(" X ");
   const ComponentWidth = Number(width);
   return (
     <_Wrapper ratio={ComponentWidth}>

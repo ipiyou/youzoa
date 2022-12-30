@@ -69,7 +69,7 @@ function Header({ user, setting }: PropsType) {
 const _Wrapper = styled.div`
   width: 250px;
   height: 100%;
-  float: left;
+  position: fixed;
   background-color: ${({ theme }) => theme.draw.headerBack};
 `;
 

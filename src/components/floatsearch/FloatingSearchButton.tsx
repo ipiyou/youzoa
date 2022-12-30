@@ -25,10 +25,9 @@ function FloatingSearchButton({ user }: PropsType) {
 }
 
 const _Wrapper = styled.div<{ x: number; y: number }>`
-  position: absolute;
+  position: fixed;
   z-index: 100;
   display: flex;
-  background-color: ${({ theme }) => theme.draw.selector};
   border-radius: 100px;
   transform: translate3d(${({ x, y }) => `${x}px,${y}px,0`});
 `;
@@ -39,7 +38,7 @@ const GainWidth_Keyframes = keyframes`
         border: 1px solid black;
     }
     100%{
-        width: 200px;
+        width: 300px;
         padding: 0 20px;
         border-radius: 50px 0 0 50px;
     }
@@ -47,7 +46,7 @@ const GainWidth_Keyframes = keyframes`
 
 const RemoveInput = keyframes`
     0%{
-        width: 200px;
+        width: 300px;
         padding: 0 20px;
     }
     100%{

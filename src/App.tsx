@@ -4,6 +4,8 @@ import GlobalContext from "./style";
 import FloatingSearchButton from "./components/floatsearch/FloatingSearchButton";
 import Header from "./components/header";
 import ScrollPage from "./pages/ScrollPage";
+import WatchSingle from "./pages/SingleVideo";
+import styled from "@emotion/styled";
 
 export interface SettingType {
   mod: boolean | null;
@@ -17,7 +19,7 @@ function App() {
     mod: null,
     bright: 0,
     list: "360 X 250",
-    video: "420 X 300",
+    video: "Basic Mode",
   });
 
   const UseingProps = { user };
@@ -27,11 +29,18 @@ function App() {
     <GlobalContext userMode={user.mod}>
       <FloatingSearchButton {...UseingProps} />
       <Header {...SetterProps} />
-      <Routes>
-        <Route path="/" element={<ScrollPage {...UseingProps} />} />
-      </Routes>
+      <MarginFromHeader>
+        <Routes>
+          <Route path="/" element={<ScrollPage {...UseingProps} />} />
+          <Route path="/watch/:id" element={<WatchSingle {...UseingProps} />} />
+        </Routes>
+      </MarginFromHeader>
     </GlobalContext>
   );
 }
+
+const MarginFromHeader = styled.div`
+  margin-left: 250px;
+`;
 
 export default App;

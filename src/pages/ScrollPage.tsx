@@ -31,7 +31,6 @@ const _Wrapper = styled.div`
   }
   background-color: ${({ theme }) => theme.draw.background};
   height: 100%;
-  margin-left: 250px;
 `;
 
 export default ScrollPage;

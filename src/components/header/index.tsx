@@ -43,7 +43,7 @@ function Header({ user, setting }: PropsType) {
   const VideoProps = SizeProps(
     video,
     1,
-    ["240 X 120", "420 X 250"],
+    ["Small Mode", "Basic Mode", "Movie Mode"],
     VideoChange
   );
 

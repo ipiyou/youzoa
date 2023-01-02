@@ -5,16 +5,13 @@ interface LocationType {
   y: number;
 }
 
-interface PropsType {
-  width: number;
-  height: number;
-}
+type XYType = [number, number];
 
-const useFloating = ({ width, height }: PropsType) => {
+const useFloating = (initXY: XYType, minXY: XYType, maxXY: XYType) => {
   const [animation, setAnime] = useState<boolean | null>(null);
   const [location, setLocate] = useState<LocationType>({
-    x: width,
-    y: height,
+    x: initXY[0],
+    y: initXY[1],
   });
 
   const onMouseDown = (fix: react.MouseEvent<SVGElement, MouseEvent>) => {

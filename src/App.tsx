@@ -6,6 +6,7 @@ import Header from "./components/header";
 import ScrollPage from "./pages/ScrollPage";
 import WatchSingle from "./pages/SingleVideo";
 import styled from "@emotion/styled";
+import FloatActiiveComponent from "./components/FloatActiveComponent";
 
 export interface SettingType {
   mod: boolean | null;
@@ -27,7 +28,15 @@ function App() {
 
   return (
     <GlobalContext userMode={user.mod}>
-      <FloatingSearchButton {...UseingProps} />
+      <FloatActiiveComponent
+        width="50px"
+        height="50px"
+        initXY={[0, 0]}
+        minXY={[0, 0]}
+        maxXY={[1280, 780]}
+        childrenElement={[FloatingSearchButton, UseingProps]}
+      />
+
       <Header {...SetterProps} />
       <MarginFromHeader>
         <Routes>

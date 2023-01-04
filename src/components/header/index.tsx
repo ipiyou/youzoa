@@ -12,6 +12,12 @@ interface PropsType {
   setting: Dispatch<SetStateAction<SettingType>>;
 }
 
+export const VideoSize = (size: string): string[] => {
+  if (size.includes("Small")) return ["600", "350"];
+  else if (size.includes("Basic")) return ["950", "550"];
+  else return ["1450", "800"];
+};
+
 function Header({ user, setting }: PropsType) {
   const { mod, bright, list, video } = user;
 

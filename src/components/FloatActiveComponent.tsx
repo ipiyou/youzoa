@@ -3,13 +3,18 @@ import styled from "@emotion/styled";
 import { cloneElement } from "react";
 import { SettingType } from "../App";
 import useFloating from "../hooks/useFloating";
+import { SinglePropsType } from "../pages/SingleVideo";
 
-type UserProps = { user: SettingType };
+type ObjectProps<T> = { [pro in keyof T]: T[pro] };
+type UserProps<T> = ObjectProps<T>;
+type ComponentType<T> = ({ ...T }: ObjectProps<T>) => JSX.Element;
 
 interface ElementPropsType {
   user: SettingType;
   animation: boolean | null;
-  onMouseDown: (fix: React.MouseEvent<SVGElement, MouseEvent>) => void;
+  onMouseDown: (
+    fix: React.MouseEvent<SVGElement | HTMLIFrameElement, MouseEvent>
+  ) => void;
 }
 
 interface PropsType {
@@ -19,8 +24,8 @@ interface PropsType {
   minXY: [number, number];
   maxXY: [number, number];
   childrenElement: [
-    ({ user, animation, onMouseDown }: ElementPropsType) => JSX.Element,
-    UserProps
+    ComponentType<ElementPropsType & Partial<SinglePropsType>>,
+    UserProps<{ user: SettingType } & Partial<SinglePropsType>>
   ];
 }
 
@@ -34,11 +39,9 @@ function FloatActiiveComponent({
 }: PropsType) {
   const [location, animation, onMouseDown] = useFloating(initXY, minXY, maxXY);
   const [FloatingComponent, FloatProps] = childrenElement;
-  const SizeProps = { width, height };
-  const FloatLocationProps = { animation, onMouseDown };
   return (
-    <_Wrapper {...location} {...SizeProps}>
-      <FloatingComponent {...FloatProps} {...FloatLocationProps} />
+    <_Wrapper {...location} {...{ width, height }}>
+      <FloatingComponent {...FloatProps} {...{ animation, onMouseDown }} />
     </_Wrapper>
   );
 }

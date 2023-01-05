@@ -6,31 +6,29 @@ import { SettingType } from "../../App";
 
 interface PropsType {
   user: SettingType;
+  animation: boolean | null;
+  onMouseDown: (
+    fix: React.MouseEvent<SVGElement, MouseEvent>
+  ) => void;
 }
 
-function FloatingSearchButton({ user }: PropsType) {
-  const [location, animation, onMouseDown] = useFloating({
-    width: 50,
-    height: 50,
-  });
-
+function FloatingSearchButton({ user, animation, onMouseDown }: PropsType) {
   const IconProps = { onMouseDown };
 
   return (
-    <_Wrapper {...location}>
+    <_Wrapper>
       {<_InputKeyWord animation={animation} />}
       <_SearchIcon {...IconProps} />
     </_Wrapper>
   );
 }
 
-const _Wrapper = styled.div<{ x: number; y: number }>`
+const _Wrapper = styled.div`
   position: fixed;
   z-index: 100;
   display: flex;
   border-radius: 100px;
   background-color: ${({ theme }) => theme.draw.setting};
-  transform: translate3d(${({ x, y }) => `${x}px,${y}px,0`});
 `;
 
 const GainWidth_Keyframes = keyframes`

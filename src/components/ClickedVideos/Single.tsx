@@ -1,14 +1,16 @@
 import styled from "@emotion/styled";
 import { SettingType } from "../../App";
+import { VideoSize } from "../header";
 
 interface PropsType {
-  src: string | undefined;
+  src?: string | undefined;
   user: SettingType;
+  onMouseDown: (fix: React.MouseEvent<HTMLIFrameElement, MouseEvent>) => void;
 }
 
-function SingleVideo({ src, user }: PropsType) {
+function SingleVideo({ src, user, onMouseDown }: PropsType) {
   const { bright, video } = user;
-  const [width, height] = video.split(" X ");
+  const [width, height] = VideoSize(video);
   return <_Video width={width} height={height} src={src} />;
 }
 

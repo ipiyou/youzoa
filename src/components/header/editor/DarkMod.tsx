@@ -1,8 +1,5 @@
 import styled from "@emotion/styled";
-import { SettingType } from "../../../App";
-import { Dispatch, SetStateAction } from "react";
 import { css, keyframes } from "@emotion/react";
-import { useAnimeState } from "../../../hooks/useAnimeState";
 
 interface PropsType {
   mod: boolean | null;

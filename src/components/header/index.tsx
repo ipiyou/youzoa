@@ -5,6 +5,7 @@ import YouZoaIcon from "../header/YouZoaIcon";
 import BrightRange from "./editor/BrightRange";
 import DarkMod from "./editor/DarkMod";
 import EditorSpace from "./editor/EditorSpace";
+import SearchInput from "./editor/SearchVIdeo";
 import SizeSelect from "./editor/SizeSelect";
 
 interface PropsType {
@@ -12,61 +13,38 @@ interface PropsType {
   setting: Dispatch<SetStateAction<SettingType>>;
 }
 
-export const VideoSize = (size: string): string[] => {
-  if (size.includes("Small")) return ["600", "350"];
-  else if (size.includes("Basic")) return ["950", "550"];
-  else return ["1450", "800"];
-};
-
 function Header({ user, setting }: PropsType) {
-  const { mod, bright, list, video } = user;
-
-  const ModChange = () => setting({ ...user, mod: !user.mod });
-  const BrightChange = (e: ChangeEvent<HTMLInputElement>) =>
-    setting({ ...user, bright: Number(e.target.value) });
-  const ListChange = (text: string) => {
-    setting({ ...user, list: text });
-  };
-  const VideoChange = (text: string) => {
-    setting({ ...user, video: text });
-  };
-
-  const SizeProps = (
-    selected: string,
-    zIndex: number,
-    List: string[],
-    SizeChange: (text: string) => void
-  ) => ({ selected, zIndex, List, SizeChange });
-
-  const DarkModProps = { ModChange, mod };
-  const BrightProps = { BrightChange, bright };
-  const ListProps = SizeProps(
-    list,
-    2,
-    ["240 X 160", "360 X 250", "520 X 400"],
-    ListChange
-  );
-  const VideoProps = SizeProps(
-    video,
-    1,
-    ["Small Mode", "Basic Mode", "Movie Mode"],
-    VideoChange
-  );
+  const { mod, bright, list, keyword } = user;
 
   return (
     <_Wrapper>
       <YouZoaIcon />
       <EditorSpace editName="DarkMod">
-        <DarkMod {...DarkModProps} />
+        <DarkMod
+          mod={mod}
+          ModChange={() => setting({ ...user, mod: !user.mod })}
+        />
       </EditorSpace>
       <EditorSpace editName="Brightness">
-        <BrightRange {...BrightProps} />
+        <BrightRange
+          bright={bright}
+          BrightChange={(e) =>
+            setting({ ...user, bright: Number(e.target.value) })
+          }
+        />
       </EditorSpace>
       <EditorSpace editName="List Size">
-        <SizeSelect {...ListProps} />
+        <SizeSelect
+          selected={list}
+          List={["240 X 160", "360 X 250", "520 X 400"]}
+          SizeChange={(text: string) => setting({ ...user, list: text })}
+        />
       </EditorSpace>
-      <EditorSpace editName="Video Size">
-        <SizeSelect {...VideoProps} />
+      <EditorSpace editName="Search">
+        <SearchInput
+          value={keyword}
+          KeyWordChange={(e) => setting({ ...user, keyword: e.target.value })}
+        />
       </EditorSpace>
     </_Wrapper>
   );

@@ -1,19 +1,18 @@
 import styled from "@emotion/styled";
-import { ChangeEvent, useState } from "react";
+import { useState } from "react";
 
 interface PropsType {
   List: string[];
-  zIndex: number;
   selected: string;
   SizeChange: (text: string) => void;
 }
 
-function SizeSelect({ List, zIndex, selected, SizeChange }: PropsType) {
+function SizeSelect({ List, selected, SizeChange }: PropsType) {
   const [onOff, Switch] = useState<boolean>(false);
   const ModalonOff = () => Switch(!onOff);
   return (
     <_Wrapper>
-      <_Interact index={zIndex}>
+      <_Interact>
         <_ModalButton onClick={ModalonOff}>{selected}</_ModalButton>
         {onOff && (
           <_ListWrapper>
@@ -35,9 +34,8 @@ const _Wrapper = styled.div`
   font-size: 18px;
 `;
 
-const _Interact = styled.div<{ index: number }>`
+const _Interact = styled.div`
   width: inherit;
-  z-index: ${({ index }) => index};
   position: absolute;
   border-radius: 10px;
   padding: 5px 0;

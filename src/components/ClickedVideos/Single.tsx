@@ -1,6 +1,6 @@
+import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import { SettingType } from "../../App";
-import { VideoSize } from "../header";
 
 interface PropsType {
   src?: string | undefined;
@@ -9,13 +9,14 @@ interface PropsType {
 }
 
 function SingleVideo({ src, user, onMouseDown }: PropsType) {
-  const { bright, video } = user;
-  const [width, height] = VideoSize(video);
-  return <_Video width={width} height={height} src={src} />;
+  const { bright } = user;
+  return <_Video src={src} onMouseDown={onMouseDown} />;
 }
 
 const _Video = styled.iframe`
   background-color: gray;
+  width: 120px;
+  height: 120px;
 `;
 
 export default SingleVideo;

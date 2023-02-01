@@ -12,6 +12,7 @@ function Icon() {
 const _Wrapper = styled.div`
   margin: 50px 0 100px 0;
   color: ${({ theme }) => theme.font.titlecolor};
+  cursor: pointer;
 `;
 
 const _Font = styled.span`

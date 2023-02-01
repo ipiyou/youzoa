@@ -40,7 +40,7 @@ const _Interact = styled.div`
   border-radius: 10px;
   padding: 5px 0;
   box-shadow: 1px 2px 0 rgba(0, 0, 0, 20%);
-  background-color: ${({ theme }) => theme.draw.setting};
+  background-color: ${({ theme }) => theme.draw.optionBack};
   color: ${({ theme }) => theme.font.infocolor};
 `;
 
@@ -52,6 +52,7 @@ const _ModalButton = styled.button`
   outline: 0;
   background-color: inherit;
   color: inherit;
+  cursor: pointer;
 `;
 
 const _ListWrapper = styled.ul`
@@ -67,7 +68,7 @@ const _Option = styled.li`
   cursor: pointer;
   color: inherit;
   :hover {
-    background-color: ${({ theme }) => theme.draw.loadcolor};
+    background-color: ${({ theme }) => theme.draw.loading};
   }
 `;
 

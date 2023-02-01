@@ -1,10 +1,12 @@
 export const darkMod = {
   draw: {
     background: "#121212",
-    selector: "#FFFFFF",
-    loadcolor: "#D9D9D9",
-
-    setting: "#333333",
+    headerBack: "#222222",
+    optionEvent: "#FFFFFF",
+    loading: "#444444",
+    optionBack: "#333333",
+    scrollBar: "#555555",
+    scrollTrack: "#c9c9c9",
   },
   font: {
     titlecolor: "#E7E7E7",
@@ -14,10 +16,13 @@ export const darkMod = {
 };
 export const whiteMod = {
   draw: {
-    background: "#ffffff",
-    selector: "#000000",
-    loadcolor: "#444444",
-    setting: "#F1F1F1",
+    background: "#fafafa",
+    headerBack: "#FFFFFF",
+    optionEvent: "#000000",
+    loading: "#D9D9D9",
+    optionBack: "#F1F1F1",
+    scrollBar: "#b1b1b1",
+    scrollTrack: "#e4e4e4",
   },
   font: {
     titlecolor: "#000000",

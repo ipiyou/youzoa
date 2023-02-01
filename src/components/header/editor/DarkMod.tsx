@@ -16,7 +16,7 @@ function DarkMod({ mod, ModChange }: PropsType) {
 
 const _Wrapper = styled.div`
   border-radius: 50px;
-  background-color: ${({ theme }) => theme.draw.setting};
+  background-color: ${({ theme }) => theme.draw.optionBack};
   width: 70px;
   height: 35px;
 `;
@@ -26,10 +26,11 @@ const _ModChangeCircle = styled.div<{ mod: boolean | null }>`
   height: 100%;
   margin-left: 35px;
   border-radius: 50px;
-  background-color: ${({ theme }) => theme.draw.selector};
+  background-color: ${({ theme }) => theme.draw.optionEvent};
   animation: ${({ mod }) =>
     typeof mod !== "object" &&
     css`0.2s ${mod ? _Dark_KeyFrame : _White_KeyFrame} forwards`};
+  cursor: pointer;
 `;
 
 const _Dark_KeyFrame = keyframes`

@@ -45,7 +45,7 @@ const MainImg = styled.div<ImgRatio>`
   width: 100%;
   height: ${({ ratio }) => ratio / 2}px;
   background: ${({ src, theme }) =>
-    src ? css`url(${src})` : theme.draw.loadcolor};
+    src ? css`url(${src})` : theme.draw.loading};
 `;
 
 const VideoIntro = styled.div`
@@ -61,7 +61,7 @@ const ProfileImg = styled.div<ImgRatio>`
       height: ${ratio / 10}px;
     `}
   background: ${({ src, theme }) =>
-    src ? css`url(${src})` : theme.draw.loadcolor};
+    src ? css`url(${src})` : theme.draw.loading};
   border-radius: 120px;
   margin: 5% 5% 0 0;
 `;

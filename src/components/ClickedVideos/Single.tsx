@@ -5,18 +5,18 @@ import { SettingType } from "../../App";
 interface PropsType {
   src?: string | undefined;
   user: SettingType;
-  onMouseDown: (fix: React.MouseEvent<HTMLIFrameElement, MouseEvent>) => void;
 }
 
-function SingleVideo({ src, user, onMouseDown }: PropsType) {
+function SingleVideo({ src, user }: PropsType) {
   const { bright } = user;
-  return <_Video src={src} onMouseDown={onMouseDown} />;
+  return <_Video src={src} />;
 }
 
 const _Video = styled.iframe`
-  background-color: gray;
-  width: 120px;
-  height: 120px;
+  border: 0;
+  outline: 0;
+  width: 100%;
+  height: 100%;
 `;
 
 export default SingleVideo;

@@ -13,6 +13,14 @@ const global = css`
   #root {
     height: 100%;
   }
+  body {
+    background-color: black;
+  }
+  button {
+    outline: 0;
+    border: 0;
+    background-color: transparent;
+  }
 `;
 
 export default global;

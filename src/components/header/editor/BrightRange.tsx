@@ -12,7 +12,7 @@ function BrightRange({ bright, BrightChange }: PropsType) {
       value={bright}
       onChange={BrightChange}
       type="range"
-      min="0"
+      min="50"
       max="100"
     />
   );

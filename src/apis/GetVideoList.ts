@@ -2,7 +2,7 @@ import axios from "axios";
 
 export interface ReSponse {
   nextPageToken: string;
-  items: (YouTube | undefined)[];
+  items: YouTube[];
 }
 
 export type YouTube = {
@@ -46,7 +46,16 @@ export type YouTube = {
 
 export const getVideoList = async (id?: string) => {
   const { data } = await axios.get<ReSponse>(
-    "https://www.googleapis.com/youtube/v3/search"
+    "https://www.googleapis.com/youtube/v3/search",
+    {
+      params: {
+        part: "snippet",
+        maxResult: 20,
+        pageToken: id,
+        chart: "mostPopular",
+        key: "AIzaSyBd66kUj6GD5J7EVnH12mbn4shwYBlBqEU",
+      },
+    }
   );
   return data;
 };

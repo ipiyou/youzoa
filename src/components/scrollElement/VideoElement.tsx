@@ -1,9 +1,12 @@
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
+import { Link } from "react-router-dom";
+import { YouTube } from "../../apis/GetVideoList";
 import { SettingType } from "../../App";
 
 interface PropsType {
   user: SettingType;
+  youtube: YouTube;
 }
 
 interface RatioWidth {
@@ -12,28 +15,25 @@ interface RatioWidth {
 
 type ImgRatio = RatioWidth & { src: string };
 
-function VideoElement({ user }: PropsType) {
-  const { bright, list } = user;
-  const [width,] = list.split(" X ");
+function VideoElement({ user, youtube }: PropsType) {
+  const { id, snippet } = youtube as YouTube;
+  const [width] = user.list.split(" X ");
   const ComponentWidth = Number(width);
   return (
-    <_Wrapper ratio={ComponentWidth}>
-      <MainImg src="" ratio={ComponentWidth} />
-      <VideoIntro>
-        <ProfileImg src="" ratio={ComponentWidth} />
-        <Intro ratio={ComponentWidth}>
-          <_IntroContent>
-            {"Hello Worldasgagagagasgasgsagasgasasfafasfafasfcadas"}
-          </_IntroContent>
-          {`100만 조회수 3년전`}
-        </Intro>
-      </VideoIntro>
-    </_Wrapper>
+    <Link to={id.videoId}>
+      <_Wrapper ratio={ComponentWidth}>
+        <MainImg src={snippet.thumbnails.medium.url} ratio={ComponentWidth} />
+        <_VideoIntro>
+          <_Intro ratio={ComponentWidth}>{youtube?.snippet.description}</_Intro>
+        </_VideoIntro>
+      </_Wrapper>
+    </Link>
   );
 }
 
 const _Wrapper = styled.div<RatioWidth>`
   display: inline-block;
+  cursor: pointer;
   ${({ ratio }) =>
     css`
       width: ${ratio}px;
@@ -48,35 +48,19 @@ const MainImg = styled.div<ImgRatio>`
     src ? css`url(${src})` : theme.draw.loading};
 `;
 
-const VideoIntro = styled.div`
+const _VideoIntro = styled.div`
   width: 100%;
   height: 50%;
   display: flex;
 `;
 
-const ProfileImg = styled.div<ImgRatio>`
-  ${({ ratio }) =>
-    css`
-      width: ${ratio / 10}px;
-      height: ${ratio / 10}px;
-    `}
-  background: ${({ src, theme }) =>
-    src ? css`url(${src})` : theme.draw.loading};
-  border-radius: 120px;
-  margin: 5% 5% 0 0;
-`;
-
-const Intro = styled.div<RatioWidth>`
-  width: 85%;
+const _Intro = styled.div<RatioWidth>`
   font-size: ${({ ratio }) => ratio / 20}px;
   color: ${({ theme }) => theme.font.fontcolor};
-`;
-
-const _IntroContent = styled.div`
   word-wrap: break-word;
   overflow: hidden;
   display: -webkit-box;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
 `;
 

@@ -17,5 +17,5 @@
     "jsx": "react-jsx"
   },
   "include": ["src"],
-  "files": ["src/assets/svg.d.ts"]
+  "files": ["src/assets/image.d.ts"]
 }

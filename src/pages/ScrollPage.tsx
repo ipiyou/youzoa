@@ -1,19 +1,46 @@
 import styled from "@emotion/styled";
+import { useRef, useState, useEffect, memo } from "react";
 import { SettingType } from "../App";
-import VideoElement from "../components/scrollvideo/VideoElement";
+import LoadingSvg from "../components/scrollElement/LoadingSvg";
+import VideoElement from "../components/scrollElement/VideoElement";
+import useCallVideo from "../hooks/useCallVideo";
 
 interface PropsType {
   user: SettingType;
 }
 
-function ScrollPage(settingValue: PropsType) {
+function ScrollPage({ user }: PropsType) {
+  const [observeElement, setObserving] = useState<HTMLDivElement | null>(null);
+
+  const { YouTube, isLoading, CallNextYoutube } = useCallVideo();
+
+  const observeCallBack = (entries: IntersectionObserverEntry[]) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) CallNextYoutube();
+    });
+  };
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(observeCallBack, {
+      threshold: 0.5,
+    });
+    if (observeElement) observer.observe(observeElement);
+    return () => observer.disconnect();
+  }, [observeElement]);
+
   return (
     <_Wrapper>
-      {Array(10)
-        .fill(0)
-        .map((_) => (
-          <VideoElement {...settingValue} />
-        ))}
+      {YouTube && YouTube.LastElement && (
+        <>
+          {YouTube.items.map((youtube, idx) => (
+            <VideoElement key={idx} user={user} youtube={youtube} />
+          ))}
+          <_ObserveElement ref={setObserving}>
+            <VideoElement user={user} youtube={YouTube.LastElement} />
+          </_ObserveElement>
+        </>
+      )}
+      {isLoading && <LoadingSvg />}
     </_Wrapper>
   );
 }
@@ -33,4 +60,8 @@ const _Wrapper = styled.div`
   height: 100%;
 `;
 
-export default ScrollPage;
+const _ObserveElement = styled.div`
+  display: inline-block;
+`;
+
+export default memo(ScrollPage);

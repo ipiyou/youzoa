@@ -5,6 +5,7 @@ import Header from "./components/header";
 import ScrollPage from "./pages/ScrollPage";
 import WatchSingle from "./pages/WatchSingle";
 import styled from "@emotion/styled";
+import useCallVideo from "./hooks/useCallVideo";
 
 export interface SettingType {
   mod: boolean | null;
@@ -21,14 +22,41 @@ function App() {
     keyword: "",
   });
 
+  const { YouTube, isLoading, CallNextYoutube } = useCallVideo(user.keyword);
+
   return (
     <GlobalContext userMode={user.mod}>
       <_WindowBright bright={user.bright}>
-        <Header user={user} setting={setting} />
+        <Header
+          user={user}
+          setting={setting}
+          CallNextYoutube={CallNextYoutube}
+        />
         <_MarginFromHeader>
           <Routes>
-            <Route path="/" element={<ScrollPage user={user} />} />
-            <Route path="/watch/:id" element={<WatchSingle user={user} />} />
+            <Route
+              path="/"
+              element={
+                <ScrollPage
+                  user={user}
+                  YouTube={YouTube}
+                  isLoading={isLoading}
+                  CallNextYoutube={CallNextYoutube}
+                />
+              }
+            />
+            <Route
+              path="search/:id"
+              element={
+                <ScrollPage
+                  user={user}
+                  YouTube={YouTube}
+                  isLoading={isLoading}
+                  CallNextYoutube={CallNextYoutube}
+                />
+              }
+            />
+            <Route path="watch/:id" element={<WatchSingle user={user} />} />
           </Routes>
         </_MarginFromHeader>
       </_WindowBright>

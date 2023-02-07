@@ -1,20 +1,31 @@
 import styled from "@emotion/styled";
-import { Dispatch, SetStateAction, ChangeEvent } from "react";
+import {
+  FetchNextPageOptions,
+  InfiniteQueryObserverResult,
+} from "@tanstack/react-query";
+import { Dispatch, SetStateAction, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { ReSponse } from "../../apis/GetVideoList";
 import { SettingType } from "../../App";
 import YouZoaIcon from "../header/YouZoaIcon";
 import BrightRange from "./editor/BrightRange";
 import DarkMod from "./editor/DarkMod";
 import EditorSpace from "./editor/EditorSpace";
-import SearchInput from "./editor/SearchVIdeo";
+import SearchInput from "./editor/SearchInput";
 import SizeSelect from "./editor/SizeSelect";
 
 interface PropsType {
   user: SettingType;
   setting: Dispatch<SetStateAction<SettingType>>;
+  CallNextYoutube: (
+    option?: FetchNextPageOptions | undefined
+  ) => Promise<InfiniteQueryObserverResult<ReSponse, unknown>>;
 }
 
-function Header({ user, setting }: PropsType) {
-  const { mod, bright, list, keyword } = user;
+function Header({ user, setting, CallNextYoutube }: PropsType) {
+  const [search, setSearch] = useState<string>("");
+  const { mod, bright, list } = user;
+  const Navigate = useNavigate();
 
   return (
     <_Wrapper>
@@ -42,8 +53,14 @@ function Header({ user, setting }: PropsType) {
       </EditorSpace>
       <EditorSpace editName="Search">
         <SearchInput
-          value={keyword}
-          KeyWordChange={(e) => setting({ ...user, keyword: e.target.value })}
+          value={search}
+          KeyWordChange={(e) => setSearch(e.target.value)}
+          onEnterInput={(e) => {
+            e.preventDefault();
+            setting({ ...user, keyword: search });
+            Navigate("search/" + search);
+            CallNextYoutube()
+          }}
         />
       </EditorSpace>
     </_Wrapper>

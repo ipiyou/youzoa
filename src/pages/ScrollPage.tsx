@@ -1,9 +1,6 @@
 import styled from "@emotion/styled";
-import {
-  FetchNextPageOptions,
-  InfiniteQueryObserverResult,
-} from "@tanstack/react-query";
 import { useState, useEffect, memo } from "react";
+import { useParams } from "react-router-dom";
 import { ReSponse, YouTube } from "../apis/GetVideoList";
 import { SettingType } from "../App";
 import LoadingSvg from "../components/scrollElement/LoadingSvg";
@@ -12,19 +9,13 @@ import useCallVideo from "../hooks/useCallVideo";
 
 interface PropsType {
   user: SettingType;
-  YouTube: {
-    items: YouTube[];
-    LastElement: YouTube | undefined;
-  };
-  isLoading: boolean;
-  CallNextYoutube: (
-    option?: FetchNextPageOptions | undefined
-  ) => Promise<InfiniteQueryObserverResult<ReSponse, unknown>>;
 }
 
-function ScrollPage({ user, YouTube, isLoading, CallNextYoutube }: PropsType) {
+function ScrollPage({ user }: PropsType) {
   const [observeElement, setObserving] = useState<HTMLDivElement | null>(null);
-
+  const { id } = useParams();
+  const { YouTube, isLoading, CallNextYoutube } = useCallVideo(id);
+  console.log(useParams());
   const observeCallBack = (entries: IntersectionObserverEntry[]) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) CallNextYoutube();

@@ -1,11 +1,6 @@
 import styled from "@emotion/styled";
-import {
-  FetchNextPageOptions,
-  InfiniteQueryObserverResult,
-} from "@tanstack/react-query";
 import { Dispatch, SetStateAction, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { ReSponse } from "../../apis/GetVideoList";
 import { SettingType } from "../../App";
 import YouZoaIcon from "../header/YouZoaIcon";
 import BrightRange from "./editor/BrightRange";
@@ -17,12 +12,9 @@ import SizeSelect from "./editor/SizeSelect";
 interface PropsType {
   user: SettingType;
   setting: Dispatch<SetStateAction<SettingType>>;
-  CallNextYoutube: (
-    option?: FetchNextPageOptions | undefined
-  ) => Promise<InfiniteQueryObserverResult<ReSponse, unknown>>;
 }
 
-function Header({ user, setting, CallNextYoutube }: PropsType) {
+function Header({ user, setting }: PropsType) {
   const [search, setSearch] = useState<string>("");
   const { mod, bright, list } = user;
   const Navigate = useNavigate();
@@ -57,9 +49,7 @@ function Header({ user, setting, CallNextYoutube }: PropsType) {
           KeyWordChange={(e) => setSearch(e.target.value)}
           onEnterInput={(e) => {
             e.preventDefault();
-            setting({ ...user, keyword: search });
             Navigate("search/" + search);
-            CallNextYoutube()
           }}
         />
       </EditorSpace>

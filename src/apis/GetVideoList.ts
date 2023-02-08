@@ -13,29 +13,8 @@ export type YouTube = {
   };
   snippet: {
     title: string;
-    description: string;
     thumbnails: {
-      default: {
-        url: string;
-        width: number;
-        height: number;
-      };
       medium: {
-        url: string;
-        width: number;
-        height: number;
-      };
-      high: {
-        url: string;
-        width: number;
-        height: number;
-      };
-      standard: {
-        url: string;
-        width: number;
-        height: number;
-      };
-      maxres: {
         url: string;
         width: number;
         height: number;
@@ -44,16 +23,17 @@ export type YouTube = {
   };
 };
 
-export const getVideoList = async (id?: string) => {
+export const getVideoList = async (searchingWord?: string, id?: string) => {
   const { data } = await axios.get<ReSponse>(
     "https://www.googleapis.com/youtube/v3/search",
     {
       params: {
         part: "snippet",
-        maxResult: 20,
+        maxResults: 20,
         pageToken: id,
+        q: searchingWord,
         chart: "mostPopular",
-        key: "AIzaSyBd66kUj6GD5J7EVnH12mbn4shwYBlBqEU",
+        key: "add your api key",
       },
     }
   );

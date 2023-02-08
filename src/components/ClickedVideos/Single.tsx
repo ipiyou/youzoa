@@ -4,11 +4,9 @@ import { SettingType } from "../../App";
 
 interface PropsType {
   src: string;
-  user: SettingType;
 }
 
-function SingleVideo({ src, user }: PropsType) {
-  const {} = user;
+function SingleVideo({ src }: PropsType) {
   return (
     <_Video
       id="ytplayer"

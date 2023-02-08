@@ -28,7 +28,6 @@ const useCallVideo = (searchingWord = "default") => {
 
     return { items, LastElement };
   };
-  console.log(Map);
 
   useEffect(() => {
     fetchNextPage();

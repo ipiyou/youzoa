@@ -27,7 +27,7 @@ function App() {
           <Routes>
             <Route path="/" element={<ScrollPage user={user} />} />
             <Route path="search/:id" element={<ScrollPage user={user} />} />
-            <Route path="watch/:id" element={<WatchSingle user={user} />} />
+            <Route path="watch/:id" element={<WatchSingle />} />
           </Routes>
         </_MarginFromHeader>
       </_WindowBright>

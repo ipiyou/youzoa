@@ -21,6 +21,9 @@ const global = css`
     border: 0;
     background-color: transparent;
   }
+  a {
+    text-decoration: none;
+  }
 `;
 
 export default global;

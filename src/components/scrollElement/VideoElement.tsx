@@ -24,9 +24,7 @@ function VideoElement({ user, youtube }: PropsType) {
       <_Wrapper ratio={ComponentWidth}>
         <MainImg src={snippet.thumbnails.medium.url} ratio={ComponentWidth} />
         <_VideoIntro>
-          <_Intro ratio={ComponentWidth}>
-            {youtube?.snippet.title}
-          </_Intro>
+          <_Intro ratio={ComponentWidth}>{youtube?.snippet.title}</_Intro>
         </_VideoIntro>
       </_Wrapper>
     </Link>
@@ -43,11 +41,9 @@ const _Wrapper = styled.div<RatioWidth>`
     `}
 `;
 
-const MainImg = styled.div<ImgRatio>`
+const MainImg = styled.img<ImgRatio>`
   width: 100%;
   height: ${({ ratio }) => ratio / 2}px;
-  background: ${({ src, theme }) =>
-    src ? css`url(${src})` : theme.draw.loading};
 `;
 
 const _VideoIntro = styled.div`

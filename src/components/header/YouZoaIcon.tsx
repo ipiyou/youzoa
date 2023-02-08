@@ -1,11 +1,14 @@
 import styled from "@emotion/styled";
+import { Link } from "react-router-dom";
 import { YouZoaIcon } from "../../assets";
 
 function Icon() {
   return (
-    <_Wrapper>
-      <_Font>YouZoa</_Font> <_Icon />
-    </_Wrapper>
+    <Link to="/">
+      <_Wrapper>
+        <_Font>YouZoa</_Font> <_Icon />
+      </_Wrapper>
+    </Link>
   );
 }
 

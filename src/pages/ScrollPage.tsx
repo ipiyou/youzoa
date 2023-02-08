@@ -15,7 +15,7 @@ function ScrollPage({ user }: PropsType) {
   const [observeElement, setObserving] = useState<HTMLDivElement | null>(null);
   const { id } = useParams();
   const { YouTube, isLoading, CallNextYoutube } = useCallVideo(id);
-  console.log(useParams());
+  
   const observeCallBack = (entries: IntersectionObserverEntry[]) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) CallNextYoutube();
@@ -24,7 +24,7 @@ function ScrollPage({ user }: PropsType) {
 
   useEffect(() => {
     const observer = new IntersectionObserver(observeCallBack, {
-      threshold: 0.5,
+      threshold: 1,
     });
     if (observeElement) observer.observe(observeElement);
     return () => observer.disconnect();

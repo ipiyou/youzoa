@@ -18,7 +18,7 @@ const useResultMap = () => {
   const keywordSearch = (keyword: string) => nameMap.includes(keyword);
   const mapIndex = (keyword: string) => nameMap.indexOf(keyword);
 
-  const MapPush = (keyword: string, arg: YouTube[]) => {
+  const mapPush = (keyword: string, arg: YouTube[]) => {
     const currentItem = Map[mapIndex(keyword)];
     if (keywordSearch(keyword)) currentItem.result.push(...arg);
     else
@@ -30,7 +30,7 @@ const useResultMap = () => {
 
   const currentMap = (keyword: string) =>
     keywordSearch(keyword) ? Map[mapIndex(keyword)].result : [];
-  return { Map, MapPush, currentMap };
+  return { Map, mapPush, currentMap };
 };
 
 export default useResultMap;

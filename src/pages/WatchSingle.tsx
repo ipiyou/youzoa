@@ -1,15 +1,10 @@
 import styled from "@emotion/styled";
-import { useLocation, useParams } from "react-router-dom";
-import { SettingType } from "../App";
+import { useParams } from "react-router-dom";
 import SingleVideo from "../components/ClickedVideos/Single";
 
-interface PropsType {
-  user: SettingType;
-}
-
-function WatchSingle({ user }: PropsType) {
+function WatchSingle() {
   const { id } = useParams();
-  return <_Wrapper>{id && <SingleVideo src={id} user={user} />}</_Wrapper>;
+  return <_Wrapper>{id && <SingleVideo src={id} />}</_Wrapper>;
 }
 
 const _Wrapper = styled.div`

@@ -26,7 +26,7 @@ const _EnterForm = styled.form`
   align-items: center;
   justify-content: space-between;
   border: 1px solid ${({ theme }) => theme.draw.optionEvent};
-  background-color: ${({ theme }) => theme.draw.optionBack};
+  background-color: ${({ theme }) => theme.draw.headerBack};
   border-radius: 5px;
 `;
 

@@ -20,11 +20,13 @@ function VideoElement({ user, youtube }: PropsType) {
   const [width] = user.list.split(" X ");
   const ComponentWidth = Number(width);
   return (
-    <Link to={id.videoId}>
+    <Link to={"/watch/" + id.videoId}>
       <_Wrapper ratio={ComponentWidth}>
         <MainImg src={snippet.thumbnails.medium.url} ratio={ComponentWidth} />
         <_VideoIntro>
-          <_Intro ratio={ComponentWidth}>{youtube?.snippet.description}</_Intro>
+          <_Intro ratio={ComponentWidth}>
+            {youtube?.snippet.title}
+          </_Intro>
         </_VideoIntro>
       </_Wrapper>
     </Link>

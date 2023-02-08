@@ -11,7 +11,10 @@ const useCallVideo = (searchingWord = "default") => {
     {
       onSuccess: (data) => {
         const LastIndex = data.pages.length - 1;
-        mapPush(searchingWord, data.pages[LastIndex].items);
+        const RemoveNotVideo = data.pages[LastIndex].items.filter(
+          (e) => e.id.videoId
+        );
+        mapPush(searchingWord, RemoveNotVideo);
       },
       getNextPageParam: (lastPage) => lastPage.nextPageToken,
       staleTime: Infinity,

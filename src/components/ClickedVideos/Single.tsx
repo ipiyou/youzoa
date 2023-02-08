@@ -3,13 +3,20 @@ import styled from "@emotion/styled";
 import { SettingType } from "../../App";
 
 interface PropsType {
-  src?: string | undefined;
+  src: string;
   user: SettingType;
 }
 
 function SingleVideo({ src, user }: PropsType) {
-  const { bright } = user;
-  return <_Video src={src} />;
+  const {} = user;
+  return (
+    <_Video
+      id="ytplayer"
+      width="720"
+      height="405"
+      src={"https://www.youtube.com/embed/" + src}
+    />
+  );
 }
 
 const _Video = styled.iframe`
